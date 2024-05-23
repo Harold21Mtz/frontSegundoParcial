@@ -1,0 +1,76 @@
+<div class="modal-container">
+  <div class="modal-header" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+    <h5 class="modal-title">Registrar Producto</h5>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form class="form grid" [formGroup]="register">
+      <div class="col-12">
+        <div class="form-container">
+          <div class="form-group">
+            <label class="form-label">Nombre</label>
+            <input class="form-input" appInputMask="words" appValidateErrors type="text"
+                   placeholder="Ingrese el nombre del producto"
+                   formControlName="title">
+            <span class="form-line"></span>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="form-container">
+          <div class="form-group">
+            <label class="form-label">Categoría</label>
+            <ng-select [items]="categories"
+                       bindValue="id"
+                       bindLabel="name"
+                       class="custom-two form-ng-select"
+                       placeholder="Seleccione una opción"
+                       formControlName="categoryId">
+            </ng-select>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="form-container">
+          <div class="form-group">
+            <label class="form-label">Precio</label>
+            <input class="form-input" appInputMask="float" appValidateErrors type="text"
+                   placeholder="Ingrese el precio del producto"
+                   formControlName="price">
+            <span class="form-line"></span>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="form-container">
+          <div class="form-group">
+            <label class="form-label">Descripción</label>
+            <textarea class="form-input text-area-high" appInputMask="words" appValidateErrors type="text"
+                      placeholder="Ingrese la descripción del producto"
+                      formControlName="description"></textarea>
+            <span class="form-line"></span>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="form-container">
+          <div class="form-group">
+            <label class="form-label">Imágenes</label>
+            <input class="form-input" appInputMask="url" appValidateErrors type="text"
+                   placeholder="Ingrese las Imágenes del producto"
+                   formControlName="images">
+            <span class="form-line"></span>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="cont-cen">
+          <button class="btn-general" (click)="sendRegister()">Registrar producto</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</div>

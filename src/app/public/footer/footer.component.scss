@@ -1,0 +1,126 @@
+.hsg-footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+
+  &__contact-links {
+    margin-bottom: 20px;
+
+    .social-cl {
+      display: flex;
+      justify-content: center;
+      margin: 0 auto;
+
+      .hsg-footer__social {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+
+        li {
+          display: inline-block;
+
+          a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+
+            &:hover {
+              color: #1da1f2;
+            }
+
+            .cl-icon {
+              width: 24px;
+              height: 24px;
+            }
+
+            .hidden-social {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    .hsg-footer__apps {
+      display: flex;
+      gap: 20px;
+
+      .hsg-footer__app {
+        display: inline-block;
+        transition: transform 0.3s ease;
+
+        &:hover {
+          transform: scale(1.05);
+        }
+
+        img {
+          width: 136px;
+          height: 45px;
+        }
+      }
+    }
+
+    .hsg-footer__logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      a {
+        display: block;
+
+        img {
+          width: auto;
+          height: 100px;
+        }
+      }
+
+      p {
+        margin: 0;
+      }
+    }
+
+    .hsg-footer__copyright {
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+
+        li {
+          a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+
+            &:hover {
+              color: #1da1f2;
+            }
+          }
+        }
+      }
+
+      .hs-footer-cookie-settings {
+        display: none;
+      }
+    }
+  }
+  .social-icons{
+    gap: 10px;
+    display: flex;
+  }
+}

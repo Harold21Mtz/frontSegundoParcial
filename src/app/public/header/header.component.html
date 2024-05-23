@@ -1,0 +1,14 @@
+<header class="main-header">
+  <div class="container">
+    <h1>Fake Api Platzi</h1>
+    <nav>
+      <ul>
+        <li *ngIf="userData?.name">
+          <img [src]="userData.avatar" alt="avatar {{userData.name}}" class="avatar">
+          <span>Bienvenido de nuevo, {{userData.name}}</span>
+        </li>
+        <li><a (click)="logout()">Logout</a><i class="bi bi-box-arrow-right"></i></li>
+      </ul>
+    </nav>
+  </div>
+</header>

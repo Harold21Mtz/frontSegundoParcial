@@ -1,0 +1,36 @@
+<div class="dashboard-container">
+  <div class="main-container">
+    <button class="btn btn-primary" (click)="openModalCreate()">Registrar Producto</button>
+  </div>
+  <div class="product-list-container">
+    <ul *ngIf="products.length > 0; else noProductsTemplate" class="product-list">
+      <li *ngFor="let product of products" class="product-item" (click)="openModalProductById(product.id)">
+        <div class="card">
+          <div class="card-header">
+            <img [src]="product.images[0]" alt="{{ product.title }}" class="product-image"/>
+          </div>
+          <div class="card-body">
+            <h3 class="product-title">{{ product.title }}</h3>
+            <p class="product-category">Categoría: <span>{{ product.category.name }}</span></p>
+            <p class="product-price">Precio: <span>${{ product.price }}</span></p>
+            <div class="icons">
+              <i class="bi bi-pencil-square up" (click)="openModalUpdate(product.id, $event)" title="Edit"></i>
+              <i class="bi bi-trash-fill del" (click)="deleteProductById(product.id, $event)" title="Delete"></i>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <ng-template #noProductsTemplate>
+      <div class="no-products-container">
+        <p class="no-products-message">No hay productos disponibles en este momento. Intente más tarde</p>
+        <div class="homero">
+          <img src="/assets/img/giphy.gif" alt="Homero GIF" width="480" height="360" class="giphy-static" autoplay>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+<!--https://api.escuelajs.co/api/v1/files/7109b.jpg-->
+<!--https://i.imgur.com/cSytoSD.jpeg-->

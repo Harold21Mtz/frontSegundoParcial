@@ -1,0 +1,19 @@
+<div class="modal-overlay" (click)="closeModal()"></div>
+<div class="modal-content">
+  <div class="product-card">
+    <div class="product-image-container">
+      <button class="nav-button prev-button" (click)="prevImage()">&#10094;</button>
+      <img [src]="product.images[currentImageIndex]" alt="Product Image" class="product-image">
+      <button class="nav-button next-button" (click)="nextImage()">&#10095;</button>
+    </div>
+    <div class="product-details">
+      <h2 class="product-title">{{ product.title }}</h2>
+      <h3 class="product-category">{{ product.category.name }}</h3>
+      <p class="product-description">{{ product.description }}</p>
+      <div class="product-price">
+        <span>$ {{ product.price }}</span>
+      </div>
+      <button class="add-to-cart">Add to cart</button>
+    </div>
+  </div>
+</div>
