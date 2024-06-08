@@ -6,9 +6,9 @@
     </div>
     <nav>
       <ul>
-        <li *ngIf="userData?.username">
-          <img [src]="userData.avatar" alt="avatar {{userData.username}}" class="avatar">
-          <span>Bienvenido, {{userData.username}}</span>
+        <li *ngIf="username">
+          <img [src]="avatar" alt="avatar {{username}}" class="avatar">
+          <span>Bienvenido, {{username}}</span>
         </li>
         <li>
           <a (click)="logout()">Logout</a>

@@ -21,12 +21,12 @@ export const appConfig: ApplicationConfig = {
     }),
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
+      useClass: ApiInterceptor,
       multi: true
     },
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: ApiInterceptor,
+      useClass: AuthInterceptor,
       multi: true
     },
     {

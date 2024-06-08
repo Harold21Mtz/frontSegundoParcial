@@ -35,8 +35,9 @@
     overflow: hidden;
 
     .product-image {
-      width: 80%;
-      //height: 100%;
+      width: auto;
+      height: 270px;
+      object-fit: cover;
       min-height: 80%;
       max-height: 85%;
       border-radius: 10px;

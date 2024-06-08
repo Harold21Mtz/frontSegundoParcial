@@ -22,13 +22,23 @@ export class HeaderComponent implements OnInit {
     avatar: '',
   };
 
+  username: string | null = '';
+  avatar: string | null= '';
+
   constructor(
     private _authService: AuthService,
     private _alertService: AlertService) {
   }
 
   ngOnInit(): void {
-    this.getDataOfUserSession();
+    if (typeof localStorage !== 'undefined') {
+      this.username = localStorage.getItem('username');
+      this.avatar = localStorage.getItem('avatar');
+    }
+
+    if(this.username == null && this.avatar  == null){
+      this.getDataOfUserSession();
+    }
   }
 
   logout() {
@@ -38,7 +48,12 @@ export class HeaderComponent implements OnInit {
   getDataOfUserSession() {
     this._authService.getUserSession().subscribe({
       next: (data: AuthSessionInterface) => {
-        this.userData = data;
+        this.username = data.username;
+        this.avatar = data.avatar;
+        if (typeof localStorage !== 'undefined') {
+          localStorage.setItem("username", data.username);
+          localStorage.setItem("avatar", data.avatar);
+        }
       },
       // error: (err) => {
       //   this._alertService.error(err.message);
