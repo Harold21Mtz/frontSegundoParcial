@@ -1,45 +1,42 @@
 <div class="wrapper-login" [class]="right_panel">
 
   <div class="content-form " *ngIf="!showRegister">
-
-    <form class=" form grid" [formGroup]="login">
-      <div class="col-6">
-        <h1 class="title-register">Inicia sesión</h1>
-      </div>
-      <div class="col-12">
-        <div class="form-container">
-          <div class="form-group">
-            <label class="form-label">Nombre de usuario</label>
-            <input class="form-input" appInputMask="words" appValidateErrors type="text" placeholder="Ingrese el nombre de usuario"
-                   formControlName="username">
-            <span class="form-line"></span>
+    <div class="container-form">
+      <form class="form" [formGroup]="login">
+        <div class="col-offset-2 col-8 col-offset-2">
+          <h1 class="title-register">Inicia sesión</h1>
+        </div>
+        <div class="col-offset-2 col-8 col-offset-2">
+          <div class="form-container">
+            <div class="form-group">
+              <label class="form-label">Nombre de usuario</label>
+              <input class="form-input" appInputMask="words" appValidateErrors type="text"
+                     placeholder="Ingrese el nombre de usuario"
+                     formControlName="username">
+              <span class="form-line"></span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-6 md:col-6 lg:col-6">
-        <div class="form-container">
-          <div class="form-group">
-            <label class="form-label">Contraseña</label>
-            <input class="form-input" appValidateErrors type="password" placeholder="Ingrese la contraseña"
-                   formControlName="password">
-            <span class="form-line"></span>
+        <div class="col-offset-2 col-8  col-offset-2 md:col-6 lg:col-6">
+          <div class="form-container">
+            <div class="form-group">
+              <label class="form-label">Contraseña</label>
+              <input class="form-input" appValidateErrors type="password" placeholder="Ingrese la contraseña"
+                     formControlName="password">
+              <span class="form-line"></span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-12">
-        <div class="cont-cen">
+        <div class="col-offset-2 col-8  col-offset-2 md:col-6 lg:col-6 form-bottom">
           <button class="btn-general" (click)="sendLogin()">Login</button>
+          <h1 class="title">¿No tienes una cuenta?, <span (click)="viewRegister()" style="color: darkseagreen ; cursor:pointer;">Crea una aquí.</span>
+          </h1>
         </div>
-      </div>
-
-      <h1 class="title">¿No tienes una cuenta?, <span (click)="viewRegister()" style="color: darkseagreen">Crea una aquí.</span>
-      </h1>
-    </form>
-
+      </form>
+    </div>
     <div class="content-color tra-tra2">
       <img src="assets/img/shopping-store.png" alt="">
     </div>
-
   </div>
 
 
@@ -49,63 +46,62 @@
       <img src="assets/img/shopping-store.png" alt="">
     </div>
 
-    <form class=" form grid " [formGroup]="register">
-      <div class="col-12">
-        <h1 class="title-register">Crear una cuenta</h1>
-      </div>
-      <div class="col-6 md:col-6 lg:col-6">
-        <div class="form-container">
-          <div class="form-group">
-            <label class="form-label">Nombre de usuario</label>
-            <input class="form-input" appInputMask="words" appValidateErrors type="text" placeholder="Ingrese el nombre de usuario"
-                   formControlName="username">
-            <span class="form-line"></span>
+    <div class="container-form">
+      <form class="form" [formGroup]="register">
+        <div class="col-offset-2 col-8 col-offset-2">
+          <h1 class="title-register">Crear una cuenta</h1>
+        </div>
+        <div class="col-offset-2 col-8 col-offset-2">
+          <div class="form-container">
+            <div class="form-group">
+              <label class="form-label">Nombre de usuario</label>
+              <input class="form-input" appInputMask="words" appValidateErrors type="text"
+                     placeholder="Ingrese el nombre de usuario"
+                     formControlName="username">
+              <span class="form-line"></span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-6 md:col-6 lg:col-6">
-        <div class="form-container">
-          <div class="form-group">
-            <label class="form-label">Correo</label>
-            <input class="form-input" appInputMask="email" appValidateErrors type="text" placeholder="Ingrese el correo"
-                   formControlName="email" (change)="validateEmail()">
-            <span class="form-line"></span>
+        <div class="col-offset-2 col-8 col-offset-2">
+          <div class="form-container">
+            <div class="form-group">
+              <label class="form-label">Correo</label>
+              <input class="form-input" appInputMask="email" appValidateErrors type="text"
+                     placeholder="Ingrese el correo"
+                     formControlName="email" (change)="validateEmail()">
+              <span class="form-line"></span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-6 md:col-6 lg:col-6">
-        <div class="form-container">
-          <div class="form-group">
-            <label class="form-label"> Contraseña</label>
-            <input class="form-input" appValidateErrors type="password" placeholder="Ingrese la contraseña"
-                   formControlName="password">
-            <span class="form-line"></span>
+        <div class="col-offset-2 col-8 col-offset-2">
+          <div class="form-container">
+            <div class="form-group">
+              <label class="form-label"> Contraseña</label>
+              <input class="form-input" appValidateErrors type="password" placeholder="Ingrese la contraseña"
+                     formControlName="password">
+              <span class="form-line"></span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-6 md:col-6 lg:col-6">
-        <div class="form-container">
-          <div class="form-group">
-            <label class="form-label">Avatar</label>
-            <input class="form-input" appInputMask="url" appValidateErrors type="text" placeholder="Ingrese el avatar"
-                   formControlName="avatar">
-            <span class="form-line"></span>
+        <div class="col-offset-2 col-8 col-offset-2">
+          <div class="form-container">
+            <div class="form-group">
+              <label class="form-label">Avatar</label>
+              <input class="form-input" appInputMask="url" appValidateErrors type="text" placeholder="Ingrese el avatar"
+                     formControlName="avatar">
+              <span class="form-line"></span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-12">
-        <div class="cont-cen">
+        <div class="col-offset-2 col-8  col-offset-2 md:col-6 lg:col-6 form-bottom">
           <button class="btn-general" (click)="sendRegister()">Registrarse</button>
+          <h1 class="title">¿Ya tienes cuenta?, <span (click)="viewRegister()"
+                                                      style="color: darkseagreen; cursor:pointer;">Logueate.</span>
+          </h1>
         </div>
-      </div>
-
-      <h1 class="title">¿Ya tienes cuenta?, <span (click)="viewRegister()" style="color: darkseagreen">Logueate.</span>
-      </h1>
-
-    </form>
-
+      </form>
+    </div>
   </div>
-
 </div>
