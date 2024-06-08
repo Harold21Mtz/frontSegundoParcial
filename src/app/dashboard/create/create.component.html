@@ -13,7 +13,7 @@
             <label class="form-label">Nombre</label>
             <input class="form-input" appInputMask="words" appValidateErrors type="text"
                    placeholder="Ingrese el nombre del producto"
-                   formControlName="title">
+                   formControlName="name">
             <span class="form-line"></span>
           </div>
         </div>
@@ -23,11 +23,11 @@
           <div class="form-group">
             <label class="form-label">Categoría</label>
             <ng-select [items]="categories"
-                       bindValue="id"
+                       bindValue="id_category"
                        bindLabel="name"
                        class="custom-two form-ng-select"
                        placeholder="Seleccione una opción"
-                       formControlName="categoryId">
+                       formControlName="id_category">
             </ng-select>
           </div>
         </div>
@@ -39,6 +39,17 @@
             <input class="form-input" appInputMask="float" appValidateErrors type="text"
                    placeholder="Ingrese el precio del producto"
                    formControlName="price">
+            <span class="form-line"></span>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="form-container">
+          <div class="form-group">
+            <label class="form-label">Stock</label>
+            <input class="form-input" appInputMask="float" appValidateErrors type="text"
+                   placeholder="Ingrese el stock del producto"
+                   formControlName="stock">
             <span class="form-line"></span>
           </div>
         </div>
@@ -60,7 +71,7 @@
             <label class="form-label">Imágenes</label>
             <input class="form-input" appInputMask="url" appValidateErrors type="text"
                    placeholder="Ingrese las Imágenes del producto"
-                   formControlName="images">
+                   formControlName="img">
             <span class="form-line"></span>
           </div>
         </div>

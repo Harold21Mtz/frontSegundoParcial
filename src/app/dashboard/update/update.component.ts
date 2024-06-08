@@ -28,25 +28,19 @@ export class UpdateComponent implements OnInit{
 
   public edit: FormGroup = new FormGroup({});
 
-  imageArray: string[] = [];
-  images: string[] = [];
-
-  category: CategoryInterface = {
-    id: '',
-    name : '' ,
-    image : ''
-  };
-
   product: ProductInterface = {
-    category: this.category,
-    id: '',
-    title: '',
+    id_product: '',
+    name_product: '',
     description: '',
     price: 0,
-    images: []
+    stock: 0,
+    img: '',
+    id_category: 0,
+    name_category: '',
   };
 
   id: string = '';
+  categories: CategoryInterface[] = [];
 
   constructor(
     private _alertService: AlertService,
@@ -60,35 +54,39 @@ export class UpdateComponent implements OnInit{
     this.initFormUpdate();
     this.id = this.data.id;
     this.getProductById(this.id);
+    this.getAllCategories();
   }
 
 
   private initFormUpdate() {
     this.edit = new FormGroup({
-      title: new FormControl('', [Validators.required, Validators.maxLength(50), Validators.minLength(4)]),
-      description: new FormControl('', [Validators.required, Validators.maxLength(400), Validators.minLength(4)]),
+      name_product: new FormControl('', [Validators.required, Validators.maxLength(20), Validators.minLength(4)]),
+      description: new FormControl('', [Validators.required, Validators.maxLength(100)]),
       price: new FormControl('', [Validators.required, Validators.min(1)]),
-      images: new FormControl('')
+      stock: new FormControl('', [Validators.required, Validators.min(1)]),
+      img: new FormControl('', [Validators.required]),
+      id_category: new FormControl('', [Validators.required]),
     });
   }
 
   getProductById(id: string): void {
     this._productService.getOne(id).subscribe({
       next: (data: ProductInterface) => {
-        const images=  data.images.map( (value: string) => value.replaceAll('"', '').replaceAll('[', '').replaceAll(']', ''));
         this.edit.patchValue({
-          title: data.title,
-          price: data.price,
+          name_product: data.name_product,
           description: data.description,
-          images: images
+          price: data.price,
+          stock: data.stock,
+          img: data.img,
+          name_category: data.name_category,
+          id_category: data.id_category,
+
         });
         this.product = data;
-        this.imageArray = data.images;
-        this.images = images;
-
       },
-      error: (err) => {
-        this._alertService.error("No se pudo obtener el producto");
+      error: (error) => {
+        const errorMsg = error?.error?.msg || "Error desconocido";
+        this._alertService.error(errorMsg);
       }
     });
   }
@@ -96,10 +94,12 @@ export class UpdateComponent implements OnInit{
   sendUpdate(): void {
     if (this.edit.valid) {
       const data: any = {
-        title: this.edit.get('title')?.value,
-        price: this.edit.get('price')?.value,
+        name: this.edit.get('name_product')?.value,
         description: this.edit.get('description')?.value,
-        images: [this.edit.get('images')?.value],
+        price: this.edit.get('price')?.value,
+        stock: this.edit.get('stock')?.value,
+        img: this.edit.get('img')?.value,
+        id_category: this.edit.get('id_category')?.value,
       }
       this._productService.putProduct(this.id, data).subscribe({
           next: () => {
@@ -107,8 +107,9 @@ export class UpdateComponent implements OnInit{
             this.edit.reset();
             this.dialogRef.close(true);
           },
-          error: (err) => {
-            this._alertService.error(err.error.message);
+          error: (error) => {
+            const errorMsg = error?.error?.msg || "Error desconocido";
+            this._alertService.error(errorMsg);
           }
         }
       )
@@ -117,15 +118,23 @@ export class UpdateComponent implements OnInit{
     }
   }
 
+  getAllCategories(): void {
+    this._productService.getAllCategories().subscribe({
+        next: (data: CategoryInterface[]) => {
+          this.categories = data;
+        }
+      }
+    );
+  }
+
   closeModal() {
     this.dialogRef.close(false);
   }
 
-  removeImage(index: number): void {
-    this.product.images.splice(index, 1);
-    this.images.splice(index, 1)
-    this.edit.get('images')?.setValue(this.product.images.join(',').replaceAll('"', '').replaceAll('[', '').replaceAll(']', ''));
-  }
-
+  // removeImage(index: number): void {
+  //   this.product.images.splice(index, 1);
+  //   this.images.splice(index, 1)
+  //   this.edit.get('images')?.setValue(this.product.images.join(',').replaceAll('"', '').replaceAll('[', '').replaceAll(']', ''));
+  // }
 
 }

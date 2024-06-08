@@ -1,8 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {CategoryInterface, ProductInterface} from "../../core/interface/producto-interface";
-import {AlertService} from "../../core/services/alert.service";
+import {ProductInterface} from "../../core/interface/producto-interface";
 import {ProductService} from "../service/product.service";
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {AlertService} from "../../core/services/alert.service";
 
 @Component({
   selector: 'app-view',
@@ -13,26 +13,22 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog
 })
 export class ViewComponent implements OnInit{
 
-  category: CategoryInterface = {
-    id: '',
-    name : '' ,
-    image : ''
-  };
-
   product: ProductInterface = {
-    category: this.category,
-    id: '',
-    title: '',
+    id_product: '',
+    name_product: '',
     description: '',
     price: 0,
-    images: []
+    stock: 0,
+    img: '',
+    id_category: 0,
+    name_category: '',
   };
 
   id: string = '';
-  currentImageIndex: number = 0;
 
   constructor(
     private _productService: ProductService,
+    private _alertService: AlertService,
     private dialogRef: MatDialogRef<ViewComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
@@ -47,40 +43,15 @@ export class ViewComponent implements OnInit{
     this._productService.getOne(id).subscribe({
       next: (data: ProductInterface) => {
         this.product = data;
-
-        // Verificar si la primera imagen es una cadena JSON y analizarla
-        if (this.product.images.length > 0 && typeof this.product.images[0] === 'string') {
-          if (this.product.images[0].startsWith('["')) {
-            this.product.images[0] = JSON.parse(this.product.images[0])[0];
-          }
-        }
-
-        console.log(this.product.images);
       },
-      error: (err) => {
-        console.error('Error fetching product:', err);
+      error: (error) => {
+        const errorMsg = error?.error?.msg || "Error desconocido";
+        this._alertService.error(errorMsg);
       }
     });
   }
 
-
   closeModal() {
     this.dialogRef.close(false);
-  }
-
-  prevImage() {
-    if (this.currentImageIndex > 0) {
-      this.currentImageIndex--;
-    } else {
-      this.currentImageIndex = this.product.images.length - 1;
-    }
-  }
-
-  nextImage() {
-    if (this.currentImageIndex < this.product.images.length - 1) {
-      this.currentImageIndex++;
-    } else {
-      this.currentImageIndex = 0;
-    }
   }
 }

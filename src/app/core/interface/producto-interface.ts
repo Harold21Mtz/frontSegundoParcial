@@ -1,47 +1,36 @@
 export interface ProductInterface {
-    id: string
-    title : string ,
-    price: number,
-    description: string,
-    category : CategoryInterface,
-    images : string[],
-}
-
-export interface ProductInterfaceTwo {
-  id: string,
-  name : string,
+  id_product: string,
+  name_product: string,
   description: string,
   price: number,
-  stockQuantity: number,
-  categoryName : string,
-  imagesUrl : string,
-}
-
-export interface CategoryInterfaceTwo {
-  id: string,
-  name : string ,
-  image : string,
-  description: string,
+  stock: number,
+  img: string,
+  id_category: number,
+  name_category: string,
 }
 
 export interface CategoryInterface {
-  id: string
-  name : string ,
-  image : string
+  id_category: string,
+  name: string,
+  description: string,
+  img: string
 }
 
 export interface NewProduct {
-  title: string;
-  price: number;
-  description: string;
-  categoryId: number;
-  images: string[];
+  name: string,
+  description: string,
+  price: number,
+  stock: number,
+  img: string,
+  id_category: number
 }
 
 export interface UpdateProduct {
-  title: string;
-  price: number;
-  description: string;
-  images: string[];
+  name: string,
+  description: string,
+  price: number,
+  stock: number,
+  img: string,
+  id_category: number
 }
 

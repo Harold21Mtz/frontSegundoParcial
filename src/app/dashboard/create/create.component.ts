@@ -23,8 +23,6 @@ export class CreateComponent  implements OnInit{
 
   public register: FormGroup = new FormGroup({});
 
-  imageArray: string[] = [];
-
   categories: CategoryInterface[] = [];
 
   constructor(
@@ -41,34 +39,35 @@ export class CreateComponent  implements OnInit{
 
   private initFormRegister() {
     this.register = new FormGroup({
-      title: new FormControl('', [Validators.required, Validators.maxLength(20), Validators.minLength(4)]),
-      price: new FormControl('', [Validators.required, Validators.min(1)]),
+      name: new FormControl('', [Validators.required, Validators.maxLength(20), Validators.minLength(4)]),
       description: new FormControl('', [Validators.required, Validators.maxLength(100)]),
-      categoryId: new FormControl(null, [Validators.required]),
-      images: new FormControl('', [Validators.required])
+      price: new FormControl('', [Validators.required, Validators.min(1)]),
+      stock: new FormControl('', [Validators.required, Validators.min(1)]),
+      img: new FormControl('', [Validators.required]),
+      id_category: new FormControl(null, [Validators.required]),
     });
   }
 
   sendRegister(): void {
     if (this.register.valid) {
-      this.imageArray.push(this.register.get('images')?.value)
 
       const data: any = {
-        title: this.register.get('title')?.value,
-        price: this.register.get('price')?.value,
+        name: this.register.get('name')?.value,
         description: this.register.get('description')?.value,
-        categoryId: this.register.get('categoryId')?.value,
-        images: this.imageArray
+        price: this.register.get('price')?.value,
+        stock: this.register.get('stock')?.value,
+        img: this.register.get('img')?.value,
+        id_category: this.register.get('id_category')?.value,
       }
-      console.log("´------------------"+this.imageArray);
       this._productService.postProduct(data).subscribe({
-          next: (r) => {
+          next: () => {
             this._alertService.success("Producto agregado correctamente");
             this.register.reset();
             this.dialogRef.close(true);
           },
-          error: (err) => {
-            this._alertService.error(err.error.message);
+          error: (error) => {
+            const errorMsg = error?.error?.msg || "Error desconocido";
+            this._alertService.error(errorMsg);
           }
         }
       )

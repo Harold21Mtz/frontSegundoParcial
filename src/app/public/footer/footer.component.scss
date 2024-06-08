@@ -1,126 +1,124 @@
-.hsg-footer {
-  background-color: #333;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  background: #eeeceb;
+}
+
+footer {
+  position: relative;
+  background: #19274a;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  top: -30px; /* Ajusta según el tamaño de los picos */
+  left: 0;
+  width: 100%;
+  height: 45px; /* Altura de los picos */
+  background: #19274a; /* Debe coincidir con el color de fondo del footer */
+  clip-path: polygon(0 100%, 25% 0, 50% 100%, 75% 0, 100% 100%);
+}
+
+footer .content {
+  max-width: 1300px;
+  margin: auto;
+  padding: 30px 35px 30px 35px;
+  position: relative; /* Añadido para asegurar que el contenido esté sobre los picos */
+  z-index: 1; /* Asegura que el contenido esté sobre el pseudo-elemento */
+}
+
+footer .bottom-details {
+  max-width: 1300px;
+  margin: auto;
+}
+
+.copyright_text{
+  font-size: 16px;
+  color: #cfcfcf;
+}
+
+footer .content .top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.content .top .logo-details {
   color: #fff;
-  padding: 20px 0;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.content .top .media-icons {
+  display: flex;
+}
+
+.content .top .media-icons a {
+  height: 40px;
+  width: 40px;
+  margin: 0 8px;
+  border-radius: 50%;
   text-align: center;
+  line-height: 40px;
+  color: #fff;
+  font-size: 17px;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
 
-  &__contact-links {
-    margin-bottom: 20px;
+.top .media-icons a:nth-child(1) {
+  background: #4267b2;
+}
 
-    .social-cl {
-      display: flex;
-      justify-content: center;
-      margin: 0 auto;
+.top .media-icons a:nth-child(1):hover {
+  color: #4267b2;
+  background: #fff;
+}
 
-      .hsg-footer__social {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        justify-content: center;
+.top .media-icons a:nth-child(2) {
+  background: #1da1f2;
+}
 
-        li {
-          display: inline-block;
+.top .media-icons a:nth-child(2):hover {
+  color: #1da1f2;
+  background: #fff;
+}
 
-          a {
-            color: #fff;
-            text-decoration: none;
-            transition: color 0.3s ease;
-            display: flex;
-            align-items: center;
+.top .media-icons a:nth-child(3) {
+  background: #e1306c;
+}
 
-            &:hover {
-              color: #1da1f2;
-            }
+.top .media-icons a:nth-child(3):hover {
+  color: #e1306c;
+  background: #fff;
+}
 
-            .cl-icon {
-              width: 24px;
-              height: 24px;
-            }
+.top .media-icons a:nth-child(4) {
+  background: #0077b5;
+}
 
-            .hidden-social {
-              display: none;
-            }
-          }
-        }
-      }
-    }
-  }
+.top .media-icons a:nth-child(4):hover {
+  color: #0077b5;
+  background: #fff;
+}
 
-  &__bottom {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
+.top .media-icons a:nth-child(5) {
+  background: #000000;
+}
 
-    .hsg-footer__apps {
-      display: flex;
-      gap: 20px;
-
-      .hsg-footer__app {
-        display: inline-block;
-        transition: transform 0.3s ease;
-
-        &:hover {
-          transform: scale(1.05);
-        }
-
-        img {
-          width: 136px;
-          height: 45px;
-        }
-      }
-    }
-
-    .hsg-footer__logo {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      a {
-        display: block;
-
-        img {
-          width: auto;
-          height: 100px;
-        }
-      }
-
-      p {
-        margin: 0;
-      }
-    }
-
-    .hsg-footer__copyright {
-      ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
-
-        li {
-          a {
-            color: #fff;
-            text-decoration: none;
-            transition: color 0.3s ease;
-
-            &:hover {
-              color: #1da1f2;
-            }
-          }
-        }
-      }
-
-      .hs-footer-cookie-settings {
-        display: none;
-      }
-    }
-  }
-  .social-icons{
-    gap: 10px;
-    display: flex;
-  }
+.top .media-icons a:nth-child(5):hover {
+  color: #000000;
+  background: #fff;
 }

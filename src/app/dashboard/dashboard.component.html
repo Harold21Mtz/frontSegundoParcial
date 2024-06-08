@@ -1,22 +1,26 @@
-<div class="dashboard-container">
-  <div class="main-container">
-    <button class="btn btn-primary" (click)="openModalCreate()">Registrar Producto</button>
-  </div>
-  <div class="product-list-container">
-    <ul *ngIf="products.length > 0; else noProductsTemplate" class="product-list">
-      <li *ngFor="let product of products" class="product-item" (click)="openModalProductById(product.id)">
-        <div class="card">
-          <div class="card-header">
-            <img [src]="product.images[0]" alt="{{ product.title }}" class="product-image"/>
+<div class="main-content">
+
+<!--  <div class="header">-->
+<!--    <a class="boton" (click)="openModalCreate()">Registrar Producto</a>-->
+<!--  </div>-->
+
+  <div uk-filter="target: .js-filter">
+    <ul class="uk-navbar-nav">
+      <li *ngIf="products.length > 0" class="uk-active" (click)="getAllProducts()" uk-filter-control><a>All</a></li>
+      <li *ngFor="let category of categories" (click)="getAllProductsByCategoryId(category.id_category)"><a>{{category.name.toUpperCase()}}</a></li>
+    </ul>
+
+    <ul *ngIf="products.length > 0; else noProductsTemplate" class="img-gallery-container js-filter uk-child-width-1-2 uk-child-width-1-3 @m uk-text-center" uk-grid>
+      <li *ngFor="let product of products" (click)="openModalProductById(product.id_product)">
+        <img [src]="product.img" alt="{{ product.name_product }}" class="img-gal">
+        <div class="float-gallery-content">
+          <div class="content uk-text-left">
+            <span class="highlight uk-block">{{ product.name_product }} <a style="color: #212121">|</a> {{ product.name_category }}</span>
+            <a href="#">Price: ${{ product.price }} | Stock: {{product.stock}}</a>
           </div>
-          <div class="card-body">
-            <h3 class="product-title">{{ product.title }}</h3>
-            <p class="product-category">Categoría: <span>{{ product.category.name }}</span></p>
-            <p class="product-price">Precio: <span>${{ product.price }}</span></p>
-            <div class="icons">
-              <i class="bi bi-pencil-square up" (click)="openModalUpdate(product.id, $event)" title="Edit"></i>
-              <i class="bi bi-trash-fill del" (click)="deleteProductById(product.id, $event)" title="Delete"></i>
-            </div>
+          <div class="icons">
+            <i class="bi bi-pencil-square up" (click)="openModalUpdate(product.id_product, $event)" title="Edit"></i>
+            <i class="bi bi-trash-fill del" (click)="deleteProductById(product.id_product, $event)" title="Delete"></i>
           </div>
         </div>
       </li>

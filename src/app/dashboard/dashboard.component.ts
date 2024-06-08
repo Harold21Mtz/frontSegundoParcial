@@ -3,7 +3,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {AlertService} from "../core/services/alert.service";
 import {ProductService} from "./service/product.service";
 import {LowerCasePipe, NgForOf, NgIf} from "@angular/common";
-import {ProductInterface} from "../core/interface/producto-interface";
+import {CategoryInterface, ProductInterface} from "../core/interface/producto-interface";
 import {CreateComponent} from "./create/create.component";
 import {UpdateComponent} from "./update/update.component";
 import {MatDialog} from "@angular/material/dialog";
@@ -26,6 +26,7 @@ import {ViewComponent} from "./view/view.component";
 export class DashboardComponent implements OnInit {
 
   products: ProductInterface[] = [];
+  categories: CategoryInterface[] = [];
 
   constructor(
     private _alertService: AlertService,
@@ -36,19 +37,31 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
    this.getAllProducts();
+   this.getAllCategoriesWithProducts();
   }
 
   getAllProducts(): void {
     this._productService.getAll().subscribe({
         next: (data: ProductInterface[]) => {
           this.products = data;
-          data.forEach(
-            (item: any) => {
-              if (item.images[0].startsWith('["')) {
-                item.images = JSON.parse(item.images);
-              }
-            }
-          )
+        }
+      }
+    );
+  }
+
+  getAllCategoriesWithProducts(): void {
+    this._productService.getAllCategoriesWithProducts().subscribe({
+        next: (data: CategoryInterface[]) => {
+          this.categories = data;
+        }
+      }
+    );
+  }
+
+  getAllProductsByCategoryId(id: string): void {
+    this._productService.getAllByCategoryId(id).subscribe({
+        next: (data: ProductInterface[]) => {
+          this.products = data;
         }
       }
     );

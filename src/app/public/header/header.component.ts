@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../login/service/auth.service";
 import {AuthSessionInterface} from "../../core/interface/auth-session-interface";
-import {data} from "jquery";
 import {NgIf} from "@angular/common";
 import {AlertService} from "../../core/services/alert.service";
 
@@ -14,33 +13,36 @@ import {AlertService} from "../../core/services/alert.service";
   ],
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit {
 
   userData: AuthSessionInterface = {
-    id: '',
-    name: '',
+    id_user: '',
+    username: '',
     email: '',
     avatar: '',
   };
 
-  constructor(private _authService: AuthService, private _alertService: AlertService) {
+  constructor(
+    private _authService: AuthService,
+    private _alertService: AlertService) {
   }
 
   ngOnInit(): void {
     this.getDataOfUserSession();
   }
 
-  logout(){
+  logout() {
     this._authService.logout();
   }
 
-  getDataOfUserSession(){
+  getDataOfUserSession() {
     this._authService.getUserSession().subscribe({
       next: (data: AuthSessionInterface) => {
-        this.userData = data
-    }, error: (err) => {
-        this._alertService.error("ghghghghghghg");
-      }
-    })
+        this.userData = data;
+      },
+      // error: (err) => {
+      //   this._alertService.error(err.message);
+      // }
+    });
   }
 }

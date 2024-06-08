@@ -1,12 +1,30 @@
-$main-bg-color: #333;
-$text-color: rgb(239, 239, 239);
-$link-color: white;
-$link-hover-decoration: underline;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+$main-bg-color: linear-gradient(90deg, #1d2b64, #19274a);
+$text-color: #cfcfcf;
+$link-color: #ffffff;
+$link-hover-color: #19274a;
+$link-hover-bg: #ffffff;
+$avatar-border-color: #fff;
+$transition-duration: 0.3s;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  background: #eeeceb;
+}
 
 .main-header {
-  background-color: $main-bg-color;
+  background: $main-bg-color;
   color: $text-color;
   padding: 20px 0;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
   .container {
     width: 95%;
@@ -15,8 +33,21 @@ $link-hover-decoration: underline;
     justify-content: space-between;
     align-items: center;
 
-    h1 {
-      margin: 0;
+    .logo-container {
+      display: flex;
+      align-items: center;
+
+      .logo-gif {
+        width: 60px;
+        height: 60px;
+        margin-right: 20px;
+      }
+
+      h1 {
+        font-size: 20px;
+        color: #fff;
+        margin: 0;
+      }
     }
 
     nav {
@@ -28,29 +59,46 @@ $link-hover-decoration: underline;
         align-items: center;
 
         li {
-          display: inline-flex;
+          display: flex;
           align-items: center;
-          margin-right: 10px;
+          margin-left: 15px;
 
           .avatar {
             width: 40px;
             height: 40px;
             border-radius: 50%;
             margin-right: 10px;
+            border: 2px solid $avatar-border-color;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+          }
+
+          span {
+            font-weight: 500;
+            color: #fff;
+            font-size: 16px;
+            margin-right: 10px;
           }
 
           a {
             color: $link-color;
             text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: all $transition-duration ease;
+            display: flex;
+            align-items: center;
 
             &:hover {
-              text-decoration: $link-hover-decoration;
+              color: $link-hover-color;
+              background-color: $link-hover-bg;
+              text-decoration: none;
+              box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             }
-          }
 
-          span {
-            margin-right: 10px;
-            font-weight: bold;
+            i {
+              margin-left: 8px;
+              font-size: 16px;
+            }
           }
         }
       }

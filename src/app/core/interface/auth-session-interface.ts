@@ -1,7 +1,7 @@
 export interface AuthSessionInterface {
-  id: string;
-  name: string;
-  email: string;
-  avatar: string;
+  id_user: string,
+  username: string,
+  email: string,
+  avatar: string,
 }
 
