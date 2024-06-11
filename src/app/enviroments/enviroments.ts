@@ -6,7 +6,7 @@ export const environment = {
   current_year: new Date().getFullYear().toString(),
 
   /* --- Url backend ---- */
-  api: 'http://localhost:8000/',
+  api: 'http://localhost:8010/',
 
   maintenance: false,
   maintenance_time: 120,
