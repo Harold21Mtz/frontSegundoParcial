@@ -14,7 +14,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideHttpClient(withInterceptorsFromDi(), withFetch()),
-    provideClientHydration(),
+    // provideClientHydration(),
     provideAnimations(),
     provideToastr({
       timeOut: 2000,
