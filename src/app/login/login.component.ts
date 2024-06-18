@@ -99,8 +99,9 @@ export class LoginComponent implements OnInit {
           this.register.reset();
           this.right_panel = '';
         },
-        error : (r) => {
-          this._alert.error(r.message);
+        error: (error) => {
+          const errorMsg = error?.error?.msg || "Error desconocido";
+          this._alert.error(errorMsg);
         }
       })
     } else {
